@@ -1,0 +1,44 @@
+h2 {
+  text-align: center;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.submitBtn {
+  background-color: #ffa500; /* Оранжевый цвет */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем границу */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  border-radius: 5px; /* Закругляем углы */
+  cursor: pointer; /* Задаем курсор при наведении */
+  font-size: 16px; /* Размер шрифта */
+  transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+}
+
+.submitBtn:hover {
+  background-color: #ff8c00; /* Оранжевый цвет при наведении */
+}
+
+input {
+  padding: 10px; /* Отступы внутри инпута */
+  border: 1px solid #ffa500; /* Оранжевая граница */
+  border-radius: 5px; /* Закругляем углы */
+  font-size: 16px; /* Размер шрифта */
+  outline: none; /* Убираем выделение при фокусе */
+}
+
+input::placeholder {
+  color: #ffa500; /* Оранжевый цвет для текста-подсказки */
+}
+
+input:focus {
+  border-color: #ff8c00; /* Оранжевая граница при фокусе */
+}
