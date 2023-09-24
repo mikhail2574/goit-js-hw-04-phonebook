@@ -38,9 +38,8 @@ const Form = () => {
     } else {
       setFiltered([]);
     }
-    console.log(data);
     setDataToLocalStorage(LOCAL_STORAGE_KEY, data); // Сохраняем данные в localStorage
-  }, [data, filterValue]);
+  }, [data, filterValue, firstRender]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
