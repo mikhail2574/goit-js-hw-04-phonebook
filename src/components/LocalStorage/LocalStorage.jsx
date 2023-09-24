@@ -1,15 +1,11 @@
-import PropTypes from 'prop-types';
-
-const LocalStorage = ({ dataType, value }) => {
-  // Functions for LocalStorage
-  const setItem = (dataType, value) => localStorage.setItem(dataType, value);
-  const getItem = dataType => localStorage.getItem(dataType);
+export const getDataFromLocalStorage = key => {
+  const item = localStorage.getItem(key);
+  return item ? JSON.parse(item) : null;
 };
 
-LocalStorage.propTypes = {
-  data: PropTypes.array,
-  key: PropTypes.string,
-  deleteItem: PropTypes.object,
+export const setDataToLocalStorage = (key, data, callback) => {
+  localStorage.setItem(key, JSON.stringify(data));
+  if (typeof callback === 'function') {
+    callback();
+  }
 };
-
-export default LocalStorage;

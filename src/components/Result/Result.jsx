@@ -21,8 +21,8 @@ const Result = ({ data, deleteItem }) => {
 };
 
 Result.propTypes = {
-  data: PropTypes.array,
-  deleteItem: PropTypes.object,
+  data: PropTypes.object,
+  deleteItem: PropTypes.func,
 };
 
 export default Result;
