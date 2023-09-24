@@ -12,7 +12,7 @@ import {
 const LOCAL_STORAGE_KEY = 'data';
 
 const Form = () => {
-  const firstRender = new useRef(true);
+  const firstRender = useRef(true);
   const [data, setData] = useState([]);
   const [filterValue, setFilterValue] = useState('');
   const [filtered, setFiltered] = useState([]);
@@ -25,8 +25,9 @@ const Form = () => {
   }, []);
 
   useEffect(() => {
-    if (firstRender.current) {
-      // Это первый рендер, не выполняем действия
+    const isFirstRender = firstRender.current;
+
+    if (isFirstRender) {
       firstRender.current = false;
       return;
     }
@@ -39,7 +40,7 @@ const Form = () => {
       setFiltered([]);
     }
     setDataToLocalStorage(LOCAL_STORAGE_KEY, data); // Сохраняем данные в localStorage
-  }, [data, filterValue, firstRender]);
+  }, [data, filterValue]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
