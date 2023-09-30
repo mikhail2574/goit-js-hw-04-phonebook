@@ -31,11 +31,13 @@ const Form = () => {
       firstRender.current = false;
       return;
     }
-    if (data.length > 0) {
+    if (filterValue) {
       const filteredItems = data.filter(person =>
         person.name.toLowerCase().includes(filterValue.toLowerCase())
       );
       setFiltered(filteredItems.length ? filteredItems : 'Not found');
+    } else if (data.length > 0) {
+      setFiltered(data);
     } else {
       setFiltered([]);
     }
@@ -50,19 +52,21 @@ const Form = () => {
       id: nanoid(),
     };
 
-    const reservedName = data.some(user => user.name === contact.name);
+    setData(prevData => {
+      const reservedName = prevData.some(user => user.name === contact.name);
 
-    if (reservedName) {
-      Notiflix.Notify.failure('You should take another name');
-      return;
-    } else {
-      const newData = [...data, contact];
-      setDataToLocalStorage(LOCAL_STORAGE_KEY, newData, () => {
-        setData(newData);
-        evt.target.elements.name.value = '';
-        evt.target.elements.number.value = '';
-      });
-    }
+      if (reservedName) {
+        Notiflix.Notify.failure('You should take another name');
+        return prevData;
+      } else {
+        const newData = [...prevData, contact];
+        setDataToLocalStorage(LOCAL_STORAGE_KEY, newData);
+        return newData;
+      }
+    });
+
+    evt.target.elements.name.value = '';
+    evt.target.elements.number.value = '';
   };
 
   const deleteItem = evt => {
