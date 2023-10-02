@@ -1,10 +1,13 @@
 import styles from './Result.module.css';
 import PropTypes from 'prop-types';
 
-const Result = ({ data, deleteItem }) => {
+const Result = ({ data, deleteItem, key }) => {
+  if (!data) {
+    return;
+  }
   const { id, name, number } = data;
   return (
-    <li className={styles.card}>
+    <li className={styles.card} key={key}>
       <p className={styles.name}>
         {name} 📞 {number}
       </p>
@@ -22,6 +25,7 @@ const Result = ({ data, deleteItem }) => {
 
 Result.propTypes = {
   data: PropTypes.object,
+  key: PropTypes.string,
   deleteItem: PropTypes.func,
 };
 
